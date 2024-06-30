@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'admin_app',
+    'reader',
+    
 ]
 
 MIDDLEWARE = [
@@ -49,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'eBook.urls'
+ROOT_URLCONF = 'eBook.eBook.urls'
 
 TEMPLATES = [
     {
@@ -67,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'eBook.wsgi.application'
+WSGI_APPLICATION = 'eBook.eBook.wsgi.application'
 
 
 # Database
@@ -75,10 +78,15 @@ WSGI_APPLICATION = 'eBook.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ebook',
+        'USER': 'postgres',
+        'PASSWORD': 'bacbon',
+        'HOST': 'localhost',
+        # 'PORT': '3306', 
     }
 }
+
 
 
 # Password validation
