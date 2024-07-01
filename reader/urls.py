@@ -6,5 +6,5 @@ urlpatterns = [
     path('login/', user_login, name='login'),
     # path('manage-users/', manage_users, name='manage_users'),
     # path('create-book/', create_book, name='create_book'),
-    path('books/', manage_books, name='books'),
+    path('books/', manage_books, name='book'),
 ]

@@ -28,7 +28,7 @@ def user_login(request):
             user = authenticate(request, email=email, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('books')
+                return redirect('book')
     else:
         form = UserLoginForm()
     return render(request, 'reader/login.html', {'form': form})
@@ -49,7 +49,6 @@ def user_login(request):
 #     return render(request, 'create_book.html')
 
 @login_required
-
 def manage_books(request):
     books = Book.objects.all()
     return render(request, 'reader/book_list.html', {'books': books})
