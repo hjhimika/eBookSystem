@@ -49,7 +49,7 @@ def user_login(request):
 #     return render(request, 'create_book.html')
 
 @login_required
-@user_passes_test(lambda u: u.is_staff)
+
 def manage_books(request):
     books = Book.objects.all()
     return render(request, 'reader/book_list.html', {'books': books})
