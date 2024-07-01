@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Books</title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS styles */
+        body {
+            padding: 20px;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .table-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .table-wrapper table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .table-wrapper th,
+        .table-wrapper td {
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        .table-wrapper th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        
+        .book-id {
+            font-weight: bold;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <h2>Manage Books</h2>
+    <div class="table-wrapper">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>File Attachment</th>
+                    <th>Expired Date</th>
+                 
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                    <tr>
+                        <td class="book-id">{{ book.id }}</td>
+                        <td>{{ book.name }}</td>
+                        <td>
+                            <a href="{{ book.attachment_file.url }}">{{ book.attachment_file.name }}</a>
+                        </td>
+                        <td>{{ book.expire_date }}</td>
+                     
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

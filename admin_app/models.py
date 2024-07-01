@@ -95,12 +95,15 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
 
-
+     class Status(models.TextChoices):
+          APPROVED = 'approve', _('Approve')
+          NOT_APPROVED = 'not_approved', _('Not Approved')
+         
      fullname = models.CharField(max_length=100,null=True, blank=True)
-     password = models.CharField(max_length=50)
+     password = models.CharField()
      username = models.CharField(max_length=100, null=True, blank=True, unique=True)
      email = models.EmailField(verbose_name='email address', max_length=255, null=True, blank=True, unique=True)
-
+     status = models.CharField(max_length=16, choices=Status.choices, default=Status.NOT_APPROVED, null=True, blank=True)
   
      is_active = models.BooleanField(default=True)
      is_admin = models.BooleanField(default=False)

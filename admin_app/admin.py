@@ -6,11 +6,9 @@ from .models import *
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-	list_display = [field.name for field in User._meta.fields]
+    list_display =  [field.name for field in User._meta.fields]
 
-
-
-
+  
 
 @admin.register(Role)
 class RoleAdmin(admin.ModelAdmin):
