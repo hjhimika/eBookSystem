@@ -137,18 +137,18 @@ def searchBook(request):
 @api_view(['POST'])
 
 def createBook(request):
-    data = request.data
-
     filtered_data = {}
 
-        
-    for key, value in data.items():
-        if value != '' and value != '0' and value != 0 and value != 'undefined':
+    for key, value in request.data.items():
+        if value not in ['', '0', 0, 'undefined']:
             filtered_data[key] = value
 
+    attachment_file = request.FILES.get('attachment_file', None)
+    if attachment_file:
+        filtered_data['attachment_file'] = attachment_file
 
     serializer = BookSerializer(data=filtered_data)
-    
+
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -170,6 +170,11 @@ def updateBook(request,pk):
     for key, value in data.items():
         if value not in restricted_values:
             filtered_data[key] = value
+
+    attachment_file = request.FILES.get('attachment_file', None)
+    if attachment_file:
+        filtered_data['attachment_file'] = attachment_file
+        
 
     try:
         book = Book.objects.get(pk=int(pk))
