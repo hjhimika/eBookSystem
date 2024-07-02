@@ -6,7 +6,7 @@ from .models import *
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display =  [field.name for field in User._meta.fields]
+  list_display = ('email', 'fullname','status', 'is_admin', 'is_active', 'role')
 
   
 
