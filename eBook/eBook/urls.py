@@ -21,11 +21,27 @@ from django.views.static import serve
 from django.conf import settings
 from django.conf.urls.static import static
 
+from drf_spectacular.views import SpectacularSwaggerView
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('reader.urls')),
+
+
+    # django rest urls
+
+    path('book/', include('reader.crud_urls.book_urls')),
     re_path(r"^media/(?P<path>.*)$", serve, {"document_root": settings.MEDIA_ROOT}),
     re_path(r"^static/(?P<path>.*)$", serve, {"document_root": settings.STATIC_ROOT}),
+
+      # Optional UI:
+    path(
+        "schema/swagger-ui/",
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger-ui",
+    ),
     
 ]
 
